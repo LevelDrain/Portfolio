@@ -1,0 +1,34 @@
+@charset "utf-8";
+header {
+    background-color: #ababab;
+    padding: 10px;
+}
+
+div#Container {
+    background: url("img/Cyberpunk_201541520.jpg") no-repeat;
+}
+
+#Sec1 {
+    padding-bottom: 2%;
+}
+
+#Sec2 {
+    padding-bottom: 2%;
+}
+
+#Sec3 {
+    padding-bottom: 2%;
+}
+
+#Sec4 {
+    padding-bottom: 2%;
+}
+
+#Sec5 {
+    padding-bottom: 2%;
+}
+
+footer {
+    background-color: #ababab;
+    padding: 10px;
+}
