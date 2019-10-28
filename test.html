@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no,address=no,email=no">
+	<title>CSS, JS動作確認テスト</title>
+	<!-- リンク切れ対応 <link rel="stylesheet" href="css/ress.min.css"> -->
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+	<style>
+	/* https://www.nxworld.net/tips/css-scroll-down-button.html */
+
+	#Container{
+		background-color:#000;
+		height:100vh;
+	}
+
+	a {
+		padding-top: 80px;
+		position: absolute;
+		bottom: 20px;
+		left: 50vw;
+		z-index: 0;
+		display: inline-block;
+		-webkit-transform: translate(0, -50%);
+		transform: translate(0, -50%);
+		text-decoration: none;
+	}
+
+	a:hover{
+		opacity: .5;
+	}
+
+	a span {
+		position: absolute;
+		top: 0;
+		left: 50%; /* 画面内の場所 */
+		width: 24px;
+		height: 24px;
+		margin-left: -12px;
+		border-left: 1px solid #fff; /* 左の線 */
+		border-bottom: 1px solid #fff; /* 右の線 */
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg); /* 直角の図形を45度傾ける */
+		-webkit-animation: sdb 2s infinite;
+		animation: sdb 2s infinite;
+		opacity: 0;
+		box-sizing: border-box;
+	}
+	a span:nth-of-type(1) {
+		-webkit-animation-delay: 0s;
+		animation-delay: 0s;
+	}
+	a span:nth-of-type(2) {
+		top: 16px;
+		-webkit-animation-delay: .15s;
+		animation-delay: .15s;
+	}
+	a span:nth-of-type(3) {
+		top: 32px;
+		-webkit-animation-delay: .3s;
+		animation-delay: .3s;
+	}
+	@-webkit-keyframes sdb {
+		0% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+		}
+		@keyframes sdb {
+		0% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+
+	/* https://qiita.com/ih6109_at_nagaoka/items/18e8b7557f0b5c552d71 */
+	
+	#page-top {
+		position: fixed;
+		width: 40px;
+		height: 40px;
+		left: 80vw;
+		top: 80vh;
+		background-color: #505168;
+		opacity: 0.7;
+		z-index: 10;
+	}
+
+	#page-top span {
+		width: 24px;
+		height: 24px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		border-left: 1px solid #fff;
+		border-bottom: 1px solid #fff;
+		-webkit-transform: rotate(135deg);
+		transform: rotate(135deg);
+		box-sizing: border-box;
+	}
+	</style>
+
+</head>
+
+<body>
+	<div id="Container">
+		<a id="test" href="#"><span></span><span></span><span></span>Scroll</a>
+		<div id="page-top"><span></span></div>
+	</div><!-- /#Container -->
+</body>
+
+</html>

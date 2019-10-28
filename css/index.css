@@ -1,34 +1,296 @@
 @charset "utf-8";
-header {
-    background-color: #ababab;
-    padding: 10px;
+
+/* common */
+
+body, html {
+    width: 100%;
+    height: 100%;
 }
 
-div#Container {
-    background: url("img/Cyberpunk_201541520.jpg") no-repeat;
+body {
+    margin: 0px;
+    padding: 0px;
+    color: #000;
+    font-family: 'Noto Sans JP', 'Josefin Sans', "メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+    font-size: 18px;
+    font-size: 113%;
+    line-height: 2;
+    background: #000;
+    -webkit-print-color-adjust: exact;
+    -webkit-text-size-adjust: 100%;
 }
 
-#Sec1 {
-    padding-bottom: 2%;
+h1, h2, h3, h4, h5, p, ul, ol, li, dl, dt, dd, form, figure, form {
+    margin: 0px;
+    padding: 0px;
+    font-size: 100%;
+    font-weight: normal;
 }
 
-#Sec2 {
-    padding-bottom: 2%;
+ul {
+    list-style-type: none;
 }
 
-#Sec3 {
-    padding-bottom: 2%;
+ol {
+    padding-left: 40px;
+    padding-bottom: 15px;
 }
 
-#Sec4 {
-    padding-bottom: 2%;
+img {
+    border: none;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
 }
 
-#Sec5 {
-    padding-bottom: 2%;
+table {
+    border-collapse: collapse;
+    font-size: 100%;
+    border-spacing: 0;
 }
 
-footer {
-    background-color: #ababab;
-    padding: 10px;
+iframe {
+    width: 100%;
+}
+
+
+/* link common */
+
+a {
+    color: #666;
+    transition: .4s;
+}
+
+a:hover {
+    color: #b52654;
+    text-decoration: none;
+}
+
+
+/* header */
+
+#TitileLogo {
+    z-index: 6;
+    position: fixed;
+    display: flex;
+    justify-content: flex-start;
+    width: 34vw;
+    min-width: 80px;
+    margin: 1%;
+    transition: .3s cubic-bezier(.4, 0, .2, 1);
+}
+
+.HeaderContent {
+    z-index: 5;
+    text-align: left;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 9vh;
+    background-image: url("../img/bg_header.jpg");
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+}
+
+.ScrollAnimation {
+    transform: translateY(-200%);
+}
+
+.NavSVG {
+    width: 40%;
+    min-width: 70px;
+}
+
+#Menubar {
+    z-index: 7;
+    text-align: center;
+}
+
+#Menubar ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+}
+
+#Menubar li {
+    width: 15%;
+    min-width: 80px;
+}
+
+#Menubar a {
+    display: block;
+    padding: 15px 0;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#Contents {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-top: 100vh !important;
+}
+
+
+/* Scroll down animation */
+
+
+/* https://www.nxworld.net/tips/css-scroll-down-button.html */
+
+#DownButton p {
+    padding-top: 80px;
+    position: absolute;
+    top: 85vh;
+    left: 85vw;
+    z-index: 8;
+    display: inline-block;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    text-decoration: none;
+    color: #9F3B42;
+}
+
+#DownButton p span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 1px solid #9F3B42;
+    border-bottom: 1px solid #9F3B42;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-animation: sdb 2s infinite;
+    animation: sdb 2s infinite;
+    opacity: 0;
+    box-sizing: border-box;
+}
+
+#DownButton p span:nth-last-of-type(1) {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+
+#DownButton p span:nth-last-of-type(2) {
+    top: 16px;
+    -webkit-animation-delay: .15s;
+    animation-delay: .15s;
+}
+
+#DownButton p span:nth-last-of-type(3) {
+    top: 32px;
+    -webkit-animation-delay: .3s;
+    animation-delay: .3s;
+}
+
+@-webkit-keyframes sdb {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes sdb {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+#PageTop {
+    z-index: 9;
+    position: fixed;
+    width: 123.5px;
+    left: 83vw;
+    bottom: 7vh;
+}
+
+.SectionBG {
+    z-index: 2;
+    background-color: rgba(0, 0, 0, .7);
+    padding: .5%;
+    /* なぜこれで上手くいくか分からない
+    （下だけ、または左右autoをつけると間隔があいてしまう） */
+}
+
+.Section {
+    z-index: 3;
+    background-image: url("../img/bg_article.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 80%;
+    margin: 1% auto 0;
+    padding: 30px;
+}
+
+
+/* .first {
+    padding-top: 3% !important;　Contentsの方で設定済み
+} */
+
+
+/* background */
+
+#BackgroundHome {
+    z-index: 0;
+    display: block;
+    min-width: 100%;
+    min-height: 100vh;
+    left: 0;
+    bottom: 0;
+    background-image: url("../img/bg_toppage.jpg");
+    background-color: #4d1b1d;
+    background-size: cover;
+    background-position: center 75%;
+    background-attachment: fixed;
+}
+
+#BackgroundWorks {
+    z-index: 0;
+    display: block;
+    min-width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-image: url("../img/bg_works.jpg");
+    background-color: #4d1b1d;
+    background-size: cover;
+    background-position: center 75%;
+    background-attachment: fixed;
+}
+
+#BGLayer {
+    /* z-index: 0; */
+    min-width: 100%;
+    position: relative;
+    background-image: url("../img/bg_article.jpg");
+    background-color: rgba(0, 0, 0, .7);
+    background-size: 75%;
+    background-position: center;
+}
+
+
+/* footer */
+
+#Footer {
+    background-color: #301113;
+    color: white;
+    font-size: .8em;
 }
