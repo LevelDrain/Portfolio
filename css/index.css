@@ -218,8 +218,28 @@ a:hover {
     position: fixed;
     width: 123.5px;
     left: 83vw;
-    bottom: 7vh;
+    bottom: -50vh;
+    transition: .3s cubic-bezier(.4, 0, .2, 1);
 }
+
+
+/* ネコが永遠に出続けて怖いです↓ */
+
+.PageTopAnimation {
+    animation: fly 1s infinite;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-200);
+    }
+}
+
+
+/* -------------- */
 
 .SectionBG {
     z-index: 2;
