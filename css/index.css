@@ -53,6 +53,11 @@ iframe {
     width: 100%;
 }
 
+mark {
+    background: linear-gradient(transparent 40%, #FAA7AE 40%);
+    color: inherit;
+}
+
 
 /* link common */
 
@@ -93,10 +98,6 @@ a:hover {
     background-attachment: fixed;
 }
 
-.ScrollAnimation {
-    transform: translateY(-200%);
-}
-
 .NavSVG {
     width: 40%;
     min-width: 70px;
@@ -119,12 +120,30 @@ a:hover {
 }
 
 #Menubar a {
+    position: relative;
     display: block;
-    padding: 15px 0;
+    padding: 1vh 0;
     color: #fff;
     text-align: center;
     text-decoration: none;
     font-size: 20px;
+}
+
+#Menubar a::after {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    content: '';
+    width: 60%;
+    height: 2px;
+    background: #fff;
+    transform: scale(0, 1);
+    transform-origin: left top;
+    transition: transform .3s;
+}
+
+#Menubar a:hover::after {
+    transform: scale(1, 1);
 }
 
 #Contents {
@@ -134,6 +153,174 @@ a:hover {
     height: 100%;
     overflow: auto;
     padding-top: 100vh !important;
+}
+
+
+/* articles */
+
+.SectionBG {
+    z-index: 2;
+    background-color: rgba(0, 0, 0, .7);
+    padding: .5%;
+    /* なぜこれで上手くいくか分からない
+    （下だけ、または左右autoをつけると間隔があいてしまう） */
+}
+
+.Section {
+    z-index: 3;
+    background-image: url("../img/bg_article.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 80%;
+    margin: 1% auto 0;
+    padding: 30px;
+}
+
+.Section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+/* sectionが登場するアニメーション（未完成） */
+
+
+/*
+
+.SectionBG{
+   opacity: 0;
+    transition: all .5s ease;
+}
+
+.SectionBG.show {
+    opacity: 1;
+    transform: none;
+}
+
+.SectionBG--lr {
+    transform: translate(-100px, 0);
+}
+*/
+
+
+/*----------------*/
+
+
+/* .first {
+    padding-top: 3% !important;　Contentsの方で設定済み
+} */
+
+
+/* background */
+
+
+/* 背景画像により3種類 */
+
+#BackgroundHome {
+    z-index: 0;
+    display: block;
+    min-width: 100%;
+    min-height: 100vh;
+    left: 0;
+    bottom: 0;
+    background-image: url("../img/bg_toppage.jpg");
+    background-color: #4d1b1d;
+    background-size: cover;
+    background-position: center 75%;
+    background-attachment: fixed;
+}
+
+#BackgroundWorks {
+    z-index: 0;
+    display: block;
+    min-width: 100%;
+    min-height: 100vh;
+    left: 0;
+    bottom: 0;
+    background-image: url("../img/bg_works.jpg");
+    background-color: #4d1b1d;
+    background-size: cover;
+    background-position: center 75%;
+    background-attachment: fixed;
+}
+
+#BackgroundAbout {
+    z-index: 0;
+    display: block;
+    min-width: 100%;
+    min-height: 100vh;
+    left: 0;
+    bottom: 0;
+    background-image: url("../img/bg_about.jpg");
+    background-color: #4d1b1d;
+    background-size: cover;
+    background-position: center 75%;
+    background-attachment: fixed;
+}
+
+#BGLayer {
+    min-width: 100%;
+    position: relative;
+    background-image: url("../img/bg_article.jpg");
+    background-color: rgba(0, 0, 0, .7);
+    background-size: 75%;
+    background-position: center;
+}
+
+
+/* footer */
+
+#Footer {
+    padding: 3vh 3vw;
+    background-color: #301113;
+    color: white;
+    font-size: .8em;
+}
+
+.FontColor {
+    color: red;
+    font-weight: bold;
+}
+
+
+/* animations */
+
+.ScrollAnimation {
+    transform: translateY(-200%);
+}
+
+#PageTop {
+    z-index: 9;
+    position: fixed;
+    width: 123.5px;
+    left: 85vw;
+    bottom: -50vh;
+    transition: .3s cubic-bezier(.4, 0, .2, 1);
+}
+
+#Rocket {
+    z-index: 10;
+    position: fixed;
+    width: 123.5px;
+    left: 85vw;
+    top: 100vh;
+}
+
+.PageTopAnimation {
+    animation: fly .5s linear;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0, 0%);
+    }
+    100% {
+        transform: translate(0, -500%);
+    }
+}
+
+.hideCat {
+    display: none;
 }
 
 
@@ -213,104 +400,3 @@ a:hover {
     }
 }
 
-#PageTop {
-    z-index: 9;
-    position: fixed;
-    width: 123.5px;
-    left: 83vw;
-    bottom: -50vh;
-    transition: .3s cubic-bezier(.4, 0, .2, 1);
-}
-
-
-/* ネコが永遠に出続けて怖いです↓ */
-
-.PageTopAnimation {
-    animation: fly 1s infinite;
-}
-
-@keyframes fly {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-200);
-    }
-}
-
-
-/* -------------- */
-
-.SectionBG {
-    z-index: 2;
-    background-color: rgba(0, 0, 0, .7);
-    padding: .5%;
-    /* なぜこれで上手くいくか分からない
-    （下だけ、または左右autoをつけると間隔があいてしまう） */
-}
-
-.Section {
-    z-index: 3;
-    background-image: url("../img/bg_article.jpg");
-    background-size: cover;
-    background-position: center;
-    width: 80%;
-    margin: 1% auto 0;
-    padding: 30px;
-}
-
-
-/* .first {
-    padding-top: 3% !important;　Contentsの方で設定済み
-} */
-
-
-/* background */
-
-#BackgroundHome {
-    z-index: 0;
-    display: block;
-    min-width: 100%;
-    min-height: 100vh;
-    left: 0;
-    bottom: 0;
-    background-image: url("../img/bg_toppage.jpg");
-    background-color: #4d1b1d;
-    background-size: cover;
-    background-position: center 75%;
-    background-attachment: fixed;
-}
-
-#BackgroundWorks {
-    z-index: 0;
-    display: block;
-    min-width: 100%;
-    min-height: 100vh;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    background-image: url("../img/bg_works.jpg");
-    background-color: #4d1b1d;
-    background-size: cover;
-    background-position: center 75%;
-    background-attachment: fixed;
-}
-
-#BGLayer {
-    /* z-index: 0; */
-    min-width: 100%;
-    position: relative;
-    background-image: url("../img/bg_article.jpg");
-    background-color: rgba(0, 0, 0, .7);
-    background-size: 75%;
-    background-position: center;
-}
-
-
-/* footer */
-
-#Footer {
-    background-color: #301113;
-    color: white;
-    font-size: .8em;
-}

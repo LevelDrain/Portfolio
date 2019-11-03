@@ -1,26 +1,45 @@
 const init = () => {
     const title = document.getElementById('TitileLogo'),
         pagetop = document.getElementById('PageTop'),
-        height = 400;
+        rocketcat = document.getElementById('Rocket'),
+        sectionAnimElm = document.querySelectorAll('SectionBG'),
+        height = 400; //上から400pxでタイトルロゴが消える
     let offset = 0,
         lastPosition = 0,
         ticking = false;
 
+    // タイトルロゴとトップボタンの出し入れ
     const onScroll = () => {
         if (lastPosition > height) {
-            if (lastPosition > offset) {
-                title.classList.add('ScrollAnimation');
-                pagetop.classList.add('ScrollAnimation');
-            } else {
-                title.classList.remove('ScrollAnimation');
-                pagetop.classList.remove('ScrollAnimation');
-                //セクションに被った段階で下スクロールをすると逆に表示される
+            //if (lastPosition > offset) {
+            title.classList.add('ScrollAnimation');
+            pagetop.classList.add('ScrollAnimation');
+            //}
+            // else {
+            //     title.classList.remove('ScrollAnimation');
+            //     pagetop.classList.remove('ScrollAnimation');
+            // }
+            // offset = lastPosition;
+
+        } else {
+            title.classList.remove('ScrollAnimation');
+            pagetop.classList.remove('ScrollAnimation');
+        }
+    }
+
+    //スクロールでセクションをふわっと登場させる関数（未完成）
+    const sectionAnimFunc = () => {
+        let i = 0;
+        for (; i < sectionAnimElm.length; i++) {
+            if (window.innerHeight > sectionAnimElm[i].getBoundingClientRect().top + height) {
+                sectionAnimElm[i].classList.add('show');
+                console.log(sectionAnimElm);
             }
-            offset = lastPosition;
         }
     }
 
     window.addEventListener('scroll', () => {
+        sectionAnimFunc();
         lastPosition = window.scrollY;
         if (!ticking) {
             window.requestAnimationFrame(() => {
@@ -31,16 +50,21 @@ const init = () => {
         }
     });
 
-    //参考：https://firstlayout.net/scroll-down-and-scroll-up-with-javascript/
-
+    // 「トップへ」アニメーション
     pagetop.addEventListener('click', () => {
-        title.classList.remove('ScrollAnimation');
-        title.classList.add('ScrollAnimation');
-        scrollTo(0, 0);
-        //     pagetop.classList.remove('ScrollAnimation');
-        //     pagetop.classList.add('PageTopAnimation');
-        console.log(title);
-    })
+        pagetop.classList.add('hideCat');
+        rocketcat.classList.add('PageTopAnimation');
+        setTimeout(() => { pagetop.classList.remove('hideCat'); rocketcat.classList.remove('PageTopAnimation') }, 500);
+        window.scrollTo({
+            top,
+            behavior: 'smooth'
+        });
+    });
 }
 
 onload = init;
+
+//メモ
+//https://firstlayout.net/scroll-down-and-scroll-up-with-javascript/
+//https://www.to-r.net/media/smooth_scrolling_2019/
+//https://www.webprofessional.jp/our-top-9-animation-libraries/
