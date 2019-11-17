@@ -12,12 +12,9 @@ body {
     padding: 0px;
     color: #000;
     font-family: 'Noto Sans JP', 'Josefin Sans', "メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
-    font-size: 18px;
     font-size: 113%;
     line-height: 2;
     background: #000;
-    -webkit-print-color-adjust: exact;
-    -webkit-text-size-adjust: 100%;
 }
 
 h1, h2, h3, h4, h5, p, ul, ol, li, dl, dt, dd, form, figure, form {
@@ -54,6 +51,7 @@ iframe {
 }
 
 mark {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, #FAA7AE));
     background: linear-gradient(transparent 40%, #FAA7AE 40%);
     color: inherit;
 }
@@ -63,6 +61,7 @@ mark {
 
 a {
     color: #666;
+    -webkit-transition: .4s;
     transition: .4s;
 }
 
@@ -74,20 +73,8 @@ a:hover {
 
 /* header */
 
-#TitileLogo {
-    z-index: 6;
-    position: fixed;
-    display: flex;
-    justify-content: flex-start;
-    width: 34vw;
-    min-width: 80px;
-    margin: 1%;
-    transition: .3s cubic-bezier(.4, 0, .2, 1);
-}
-
-.HeaderContent {
+#HeaderContent {
     z-index: 5;
-    text-align: left;
     position: fixed;
     left: 0;
     top: 0;
@@ -98,59 +85,183 @@ a:hover {
     background-attachment: fixed;
 }
 
-.NavSVG {
-    width: 40%;
-    min-width: 70px;
+
+/*title PCver
+-----------------------------------------------------------------*/
+
+.TitleLogo {
+    position: absolute;
+    display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    justify-content: flex-start;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    width: 450px;
+    margin: 1.5% 0 0;
+    transition: .3s linear;
+    -webkit-transition: .3s linear;
 }
 
+
+/*スマホ用タイトルを表示させない*/
+
+.TitleLogo-s {
+    display: none;
+}
+
+
+/*menu PCver
+-----------------------------------------------------------------*/
+
 #Menubar {
-    z-index: 7;
+    position: absolute;
+    right: 5vh;
+    top: 0;
+    /*右からの隙間（TODO:一般的なサイトと同じように右側が切れるようにしたい）*/
     text-align: center;
+    font-family: 'IM Fell DW Pica', serif;
+    font-size: 30px;
 }
 
 #Menubar ul {
+    overflow: hidden;
     display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     justify-content: flex-end;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     list-style: none;
+    line-height: 7vh;
 }
 
-#Menubar li {
-    width: 15%;
-    min-width: 80px;
-}
-
-#Menubar a {
-    position: relative;
-    display: block;
-    padding: 1vh 0;
-    color: #fff;
-    text-align: center;
+#Menubar li a {
     text-decoration: none;
-    font-size: 20px;
+    color: #fff;
+    float: left;
+    padding: 0 5px;
+    letter-spacing: 0.2em;
+    margin: 0 20px;
+    /*項目の間隔*/
+    display: block;
 }
 
-#Menubar a::after {
-    position: absolute;
-    bottom: 0;
-    left: 20%;
+#Menubar li a::after {
     content: '';
-    width: 60%;
-    height: 2px;
-    background: #fff;
-    transform: scale(0, 1);
-    transform-origin: left top;
-    transition: transform .3s;
+    width: 0;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    border-bottom: 3px solid #fff;
+    display: block;
 }
 
-#Menubar a:hover::after {
-    transform: scale(1, 1);
+#Menubar li a:hover::after {
+    width: 100%;
 }
+
+#Menubar-s {
+    display: none;
+}
+
+.Hmenu {
+    display: none;
+}
+
+
+/*title, menu Resposive
+-----------------------------------------------------------------*/
+
+@media screen and (max-width:800px) {
+    #Menubar-s {
+        display: none;
+        overflow: hidden;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        animation: menubar .5s both;
+        -webkit-animation: menubar .5s both;
+    }
+    @keyframes menubar {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes menubar {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    #Menubar-s ul {
+        padding-top: 13vh;
+    }
+    #Menubar-s li a {
+        display: inherit;
+        text-decoration: none;
+        margin: 3%;
+        padding: 20px 3%;
+        border: 1px solid #fff;
+        color: #fff;
+        font-size: 10px;
+    }
+    #Menubar {
+        display: none;
+    }
+    /*タイトル*/
+    .TitleLogo-s {
+        position: absolute;
+        display: block;
+        width: 65vw;
+        margin: 3%;
+        transition: .3s linear;
+        -webkit-transition: .3s linear;
+    }
+    .TitleLogo {
+        display: none;
+    }
+    #PageTop {
+        display: none;
+    }
+    #Rocket {
+        display: none;
+    }
+    /*TODO:ハンバーガーメニュー*/
+    /*空タグを使わないデザイン何か
+    理想の動作→　https://www.ueshima-coffee-ten.jp/
+    */
+    .Hmenu {
+        position: absolute;
+        display: block;
+        top: 1vh;
+        right: 1.5vw;
+    }
+    /* ※　型崩れ
+    .MenuAction-t {
+        transform: translateY(50px) rotate(-45deg);
+    }
+    .MenuAction-c {
+        display: none;
+    }
+    .MenuAction-b {
+        transform: translateY(-50px) rotate(45deg);
+    } */
+}
+
+
+/*-----------------------------------------------------------------*/
 
 #Contents {
     z-index: 1;
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     overflow: auto;
     padding-top: 100vh !important;
 }
@@ -162,35 +273,21 @@ a:hover {
     z-index: 2;
     background-color: rgba(0, 0, 0, .7);
     padding: .5%;
-    /* なぜこれで上手くいくか分からない
-    （下だけ、または左右autoをつけると間隔があいてしまう） */
 }
 
-.Section {
+.SectionBG section {
     z-index: 3;
-    background-image: url("../img/bg_article.jpg");
-    background-size: cover;
-    background-position: center;
     width: 80%;
     margin: 1% auto 0;
     padding: 30px;
+    background-image: url("../img/bg_article.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
-.Section h2 {
+.SectionBG section h2 {
     font-size: 2rem;
     font-weight: bold;
-}
-
-
-/* background */
-
-#BGLayer {
-    min-width: 100%;
-    position: relative;
-    background-image: url("../img/bg_article.jpg");
-    background-color: rgba(0, 0, 0, .7);
-    background-size: 75%;
-    background-position: center;
 }
 
 
@@ -213,6 +310,7 @@ a:hover {
 
 .ScrollAnimation {
     transform: translateY(-200%);
+    -webkit-transform: translateY(-200%);
 }
 
 #PageTop {
@@ -222,6 +320,7 @@ a:hover {
     left: 85vw;
     bottom: -50vh;
     transition: .3s cubic-bezier(.4, 0, .2, 1);
+    -webkit-transition: .3s cubic-bezier(.4, 0, .2, 1);
 }
 
 #Rocket {
@@ -233,15 +332,29 @@ a:hover {
 }
 
 .PageTopAnimation {
+    -webkit-animation: fly .5s linear;
     animation: fly .5s linear;
+}
+
+@-webkit-keyframes fly {
+    0% {
+        transform: translate(0, 0%);
+        -webkit-transform: translate(0, 0%);
+    }
+    100% {
+        transform: translate(0, -500%);
+        -webkit-transform: translate(0, -500%);
+    }
 }
 
 @keyframes fly {
     0% {
         transform: translate(0, 0%);
+        -webkit-transform: translate(0, 0%);
     }
     100% {
         transform: translate(0, -500%);
+        -webkit-transform: translate(0, -500%);
     }
 }
 
@@ -255,73 +368,90 @@ a:hover {
 
 /* https://www.nxworld.net/tips/css-scroll-down-button.html */
 
-#DownButton p {
-    padding-top: 80px;
+#DownButton {
     position: absolute;
     top: 85vh;
     left: 85vw;
     z-index: 8;
-    display: inline-block;
-    -webkit-transform: translate(0, -50%);
-    transform: translate(0, -50%);
     text-decoration: none;
-    color: #9F3B42;
-}
-
-#DownButton p span {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 24px;
-    height: 24px;
-    margin-left: -12px;
-    border-left: 1px solid #9F3B42;
-    border-bottom: 1px solid #9F3B42;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    -webkit-animation: sdb 2s infinite;
-    animation: sdb 2s infinite;
-    opacity: 0;
-    box-sizing: border-box;
-}
-
-#DownButton p span:nth-last-of-type(1) {
-    -webkit-animation-delay: 0s;
-    animation-delay: 0s;
-}
-
-#DownButton p span:nth-last-of-type(2) {
-    top: 16px;
-    -webkit-animation-delay: .15s;
-    animation-delay: .15s;
-}
-
-#DownButton p span:nth-last-of-type(3) {
-    top: 32px;
-    -webkit-animation-delay: .3s;
-    animation-delay: .3s;
-}
-
-@-webkit-keyframes sdb {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+    animation: sdb 3s infinite;
+    -webkit-animation: sdb 3s infinite;
 }
 
 @keyframes sdb {
     0% {
-        opacity: 0;
+        transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        opacity: .5;
     }
     50% {
+        transform: translateY(20%);
+        -webkit-transform: translateY(20%);
         opacity: 1;
     }
     100% {
-        opacity: 0;
+        transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        opacity: .5;
     }
 }
+
+@-webkit-keyframes sdb {
+    0% {
+        transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        opacity: .5;
+    }
+    50% {
+        transform: translateY(20%);
+        -webkit-transform: translateY(20%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        opacity: .5;
+    }
+}
+
+.SpiritMain {
+    stroke: #9400d3;
+    animation: sdb-color 6s infinite;
+    -webkit-animation: sdb-color 6s infinite;
+}
+
+.SpiritInner {
+    stroke: #9400d3;
+    fill: #fff;
+}
+
+@keyframes sdb-color {
+    0% {
+        fill: #9400d3;
+    }
+    50% {
+        fill: #c7a9d4;
+    }
+    100% {
+        fill: #9400d3;
+    }
+}
+
+@-webkit-keyframes sdb-color {
+    0% {
+        fill: #9400d3;
+    }
+    50% {
+        fill: #c7a9d4;
+    }
+    100% {
+        fill: #9400d3;
+    }
+}
+
+
+/* google フォント
+font-family: 'Noto Serif JP', serif;
+font-family: 'IM Fell DW Pica', serif;
+font-family: "Sawarabi Mincho";
+*/
