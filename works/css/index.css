@@ -4,14 +4,36 @@
 
 #BackgroundWorks {
     z-index: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: block;
-    min-width: 100%;
-    min-height: 100vh;
     left: 0;
-    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /*単位をvhにするとJSが動かない*/
     background-image: url("/Portfolio/common/img/bg_works.jpg");
     background-color: #4d1b1d;
     background-size: cover;
-    background-position: center 75%;
+    background-position: center;
     background-attachment: fixed;
+}
+
+@media screen and (max-width:760px) {
+    #BackgroundWorks {
+        z-index: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: block;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        /*単位を%にすると型崩れする*/
+        background-image: url("/Portfolio/common/img/bg_works_s.jpg");
+        background-color: #4d1b1d;
+        background-size: cover;
+        background-position: top 100% left 50%;
+        background-attachment: fixed;
+    }
 }

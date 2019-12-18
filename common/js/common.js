@@ -1,65 +1,64 @@
 const init = () => {
-    const title = document.getElementById('TitileLogo'),
-        pagetop = document.getElementById('PageTop'),
-        rocketcat = document.getElementById('Rocket'),
-        sectionAnimElm = document.querySelectorAll('SectionBG'),
+    const $title = document.querySelector('.TitleLogo'),
+        $pagetop = document.querySelector('#PageTop'),
+        $rocketcat = document.querySelector('#Rocket'),
+        $menubarS = document.querySelector('#Menubar-s'),
+        $hmenu = document.querySelector('.Hmenu'),
+        $HmenuOpen = document.querySelector('#HamburgerOpen'),
+        $HmenuClose = document.querySelector('#HamburgerClose'),
         height = 400; //上から400pxでタイトルロゴが消える
-    let offset = 0,
-        lastPosition = 0,
+    let lastPosition = 0,
         ticking = false;
 
     // タイトルロゴとトップボタンの出し入れ
     const onScroll = () => {
         if (lastPosition > height) {
-            //if (lastPosition > offset) {
-            title.classList.add('ScrollAnimation');
-            pagetop.classList.add('ScrollAnimation');
-            //}
-            // else {
-            //     title.classList.remove('ScrollAnimation');
-            //     pagetop.classList.remove('ScrollAnimation');
-            // }
-            // offset = lastPosition;
-
+            $title.classList.add('ScrollAnimation');
+            $pagetop.classList.add('ScrollAnimation');
         } else {
-            title.classList.remove('ScrollAnimation');
-            pagetop.classList.remove('ScrollAnimation');
-        }
-    }
-
-    //スクロールでセクションをふわっと登場させる関数（未完成）
-    const sectionAnimFunc = () => {
-        let i = 0;
-        for (; i < sectionAnimElm.length; i++) {
-            if (window.innerHeight > sectionAnimElm[i].getBoundingClientRect().top + height) {
-                sectionAnimElm[i].classList.add('show');
-                console.log(sectionAnimElm);
-            }
+            $title.classList.remove('ScrollAnimation');
+            $pagetop.classList.remove('ScrollAnimation');
         }
     }
 
     window.addEventListener('scroll', () => {
-        sectionAnimFunc();
         lastPosition = window.scrollY;
+
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 onScroll(lastPosition);//onScrollは引数を取らないはずでは？
-                ticking = false;//何のための初期化？
+                ticking = false;
             });
             ticking = true;
         }
     });
 
     // 「トップへ」アニメーション
-    pagetop.addEventListener('click', () => {
-        pagetop.classList.add('hideCat');
-        rocketcat.classList.add('PageTopAnimation');
-        setTimeout(() => { pagetop.classList.remove('hideCat'); rocketcat.classList.remove('PageTopAnimation') }, 500);
+    $pagetop.addEventListener('click', () => {
+        $pagetop.classList.add('hideCat');
+        $rocketcat.classList.add('PageTopAnimation');
+        setTimeout(() => { $pagetop.classList.remove('hideCat'); $rocketcat.classList.remove('PageTopAnimation') }, 500);
         window.scrollTo({
             top,
             behavior: 'smooth'
         });
     });
+
+    $hmenu.addEventListener('click', () => {
+        if ($HmenuOpen.style.display == 'block' && $HmenuClose.style.display == 'none') {
+            $HmenuOpen.style.display = 'none';
+            $HmenuClose.style.display = 'block';
+        } else {
+            $HmenuOpen.style.display = 'block';
+            $HmenuClose.style.display = 'none';
+        }
+
+        ($menubarS.style.display == 'none') ? $menubarS.style.display = 'block' : $menubarS.style.display = 'none';
+    });
+
+
+    // https://allabout.co.jp/gm/gc/23805/
+
 }
 
 onload = init;

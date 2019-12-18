@@ -2,58 +2,33 @@
 
 /* common */
 
-body, html {
-    width: 100%;
-    height: 100%;
-}
-
 body {
-    margin: 0px;
-    padding: 0px;
-    color: #000;
-    font-family: 'Noto Sans JP', 'Josefin Sans', "メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+    font-family: 'Noto Serif JP', 'Noto Sans JP', 'Josefin Sans', 'メイリオ', 'Meiryo', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', 'MS PGothic', 'Sans-Serif';
+    font-size: 18px;
     font-size: 113%;
     line-height: 2;
-    background: #000;
+    font-weight: 600;
 }
 
-h1, h2, h3, h4, h5, p, ul, ol, li, dl, dt, dd, form, figure, form {
-    margin: 0px;
-    padding: 0px;
-    font-size: 100%;
-    font-weight: normal;
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
 }
 
-ul {
-    list-style-type: none;
-}
-
-ol {
-    padding-left: 40px;
-    padding-bottom: 15px;
+ol, ul {
+    list-style: none;
 }
 
 img {
-    border: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     max-width: 100%;
-    height: auto;
-    vertical-align: middle;
-}
-
-table {
-    border-collapse: collapse;
-    font-size: 100%;
-    border-spacing: 0;
+    /* vertical-align: middle; */
+    margin: 0 auto;
 }
 
 iframe {
     width: 100%;
-}
-
-mark {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, transparent), color-stop(40%, #FAA7AE));
-    background: linear-gradient(transparent 40%, #FAA7AE 40%);
-    color: inherit;
 }
 
 
@@ -71,6 +46,61 @@ a:hover {
 }
 
 
+/* "Works" articles style */
+
+.LinkBox {
+    display: block;
+    padding: .5em;
+    margin: 1em auto;
+    width: 90%;
+    background: rgba(253, 214, 209, .3);
+    border-left: solid 6px #fdd6d1;
+    -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, .33);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, .33);
+}
+
+.TableDesign {
+    border: 1px solid #fdd6d1;
+    border-collapse: collapse;
+    border-color: #fdd6d1;
+    margin: 0 auto;
+    padding: 0;
+    width: 90%;
+    table-layout: fixed;
+    color: #000;
+}
+
+.TableDesign tr {
+    background-color: #fff;
+    padding: .35em;
+    border-bottom: 1px solid #fdd6d1;
+}
+
+.TableDesign tr:last-child {
+    border-bottom: none
+}
+
+.TableDesign th {
+    padding: 1em 10px 1em .5em;
+    /*[上][右][下][左]*/
+    width: 30%;
+    border-right: 1px solid #fdd6d1;
+}
+
+.TableDesign td {
+    padding: 1em 10px 1em .5em;
+    border-right: 1px solid #fdd6d1;
+}
+
+.TableDesign th:last-child, .TableDesign td:last-child {
+    border: none;
+}
+
+.TableDesign tbody th {
+    color: #b52654;
+}
+
+
 /* header */
 
 #HeaderContent {
@@ -80,27 +110,30 @@ a:hover {
     top: 0;
     width: 100%;
     height: 9vh;
-    background-image: url("../img/bg_header.jpg");
+    background-image: url('../img/bg_header.jpg');
     background-repeat: repeat-x;
     background-attachment: fixed;
 }
 
 
-/*title PCver
+/*■ PC site
 -----------------------------------------------------------------*/
+
+
+/*Title -----------------------------------------------------*/
 
 .TitleLogo {
     position: absolute;
-    display: flex;
     display: -webkit-box;
     display: -ms-flexbox;
-    justify-content: flex-start;
+    display: flex;
     -webkit-box-pack: start;
     -ms-flex-pack: start;
-    width: 450px;
-    margin: 1.5% 0 0;
-    transition: .3s linear;
+    justify-content: flex-start;
+    width: 40vw;
+    margin: 1.5% 3% 0;
     -webkit-transition: .3s linear;
+    transition: .3s linear;
 }
 
 
@@ -111,27 +144,27 @@ a:hover {
 }
 
 
-/*menu PCver
------------------------------------------------------------------*/
+/*Menu -----------------------------------------------------*/
 
 #Menubar {
     position: absolute;
-    right: 5vh;
+    right: 3vh;
     top: 0;
     /*右からの隙間（TODO:一般的なサイトと同じように右側が切れるようにしたい）*/
     text-align: center;
     font-family: 'IM Fell DW Pica', serif;
-    font-size: 30px;
+    font-size: 35px;
+    font-weight: 300;
 }
 
 #Menubar ul {
     overflow: hidden;
-    display: flex;
     display: -webkit-box;
     display: -ms-flexbox;
-    justify-content: flex-end;
+    display: flex;
     -webkit-box-pack: end;
     -ms-flex-pack: end;
+    justify-content: flex-end;
     list-style: none;
     line-height: 7vh;
 }
@@ -150,8 +183,8 @@ a:hover {
 #Menubar li a::after {
     content: '';
     width: 0;
-    transition: all .3s ease;
     -webkit-transition: all .3s ease;
+    transition: all .3s ease;
     border-bottom: 3px solid #fff;
     display: block;
 }
@@ -169,10 +202,256 @@ a:hover {
 }
 
 
-/*title, menu Resposive
+/*Articles -----------------------------------------------------*/
+
+#Contents {
+    z-index: 1;
+    position: relative;
+    /*ウィンドウ幅100%（vw, vh）で指定するとスクロールイベントが動かない*/
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-top: 100vh !important;
+}
+
+.SectionBG {
+    z-index: 2;
+    background-color: rgba(0, 0, 0, .7);
+    padding: .5%;
+}
+
+.SectionBG section {
+    z-index: 3;
+    width: 80%;
+    margin: 1% auto 0;
+    padding: 30px 10%;
+    background-image: url('../img/bg_article.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.SectionBG section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #301113;
+    background-image: url('../img/bg_midashi.png');
+    padding: 0 5%;
+}
+
+
+/*Footer -----------------------------------------------------*/
+
+#Footer {
+    padding: 3vh 3vw;
+    background-color: #301113;
+    color: white;
+    font-size: .8em;
+    font-weight: 50;
+}
+
+.FontColor {
+    color: red;
+    font-weight: bold;
+}
+
+
+/*Animations -----------------------------------------------------*/
+
+.ScrollAnimation {
+    -webkit-transform: translateY(-200%);
+    -ms-transform: translateY(-200%);
+    transform: translateY(-200%);
+}
+
+#PageTop {
+    z-index: 9;
+    position: fixed;
+    width: 123.5px;
+    right: 3vw;
+    bottom: -55vh;
+    -webkit-transition: .3s cubic-bezier(.4, 0, .2, 1);
+    transition: .3s cubic-bezier(.4, 0, .2, 1);
+}
+
+#Rocket {
+    z-index: 10;
+    position: fixed;
+    width: 123.5px;
+    right: 3vw;
+    top: 100vh;
+}
+
+.PageTopAnimation {
+    -webkit-animation: fly .5s linear;
+    animation: fly .5s linear;
+}
+
+@-webkit-keyframes fly {
+    0% {
+        transform: translate(0, 0%);
+        -webkit-transform: translate(0, 0%);
+    }
+    100% {
+        transform: translate(0, -1000%);
+        -webkit-transform: translate(0, -1000%);
+        opacity: 0;
+    }
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0, 0%);
+        -webkit-transform: translate(0, 0%);
+    }
+    100% {
+        transform: translate(0, -1000%);
+        -webkit-transform: translate(0, -1000%);
+        opacity: 0;
+    }
+}
+
+.hideCat {
+    display: none;
+}
+
+
+/* Scroll down animation */
+
+
+/* https://www.nxworld.net/tips/css-scroll-down-button.html */
+
+#DownButton {
+    position: absolute;
+    top: 75vh;
+    right: 5vw;
+    z-index: 8;
+    text-decoration: none;
+    -webkit-animation: sdb 3s infinite;
+    animation: sdb 3s infinite;
+}
+
+@-webkit-keyframes sdb {
+    0% {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        opacity: .5;
+    }
+    50% {
+        -webkit-transform: translateY(20%);
+        transform: translateY(20%);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        opacity: .5;
+    }
+}
+
+@keyframes sdb {
+    0% {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        opacity: .5;
+    }
+    50% {
+        -webkit-transform: translateY(20%);
+        transform: translateY(20%);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        opacity: .5;
+    }
+}
+
+.SpiritMain {
+    stroke: #9400d3;
+    -webkit-animation: sdb-color 6s infinite;
+    animation: sdb-color 6s infinite;
+}
+
+.SpiritInner {
+    stroke: #9400d3;
+    fill: #fff;
+}
+
+@-webkit-keyframes sdb-color {
+    0% {
+        fill: #9400d3;
+    }
+    50% {
+        fill: #c7a9d4;
+    }
+    100% {
+        fill: #9400d3;
+    }
+}
+
+@keyframes sdb-color {
+    0% {
+        fill: #9400d3;
+    }
+    50% {
+        fill: #c7a9d4;
+    }
+    100% {
+        fill: #9400d3;
+    }
+}
+
+
+/*■ Resposive
 -----------------------------------------------------------------*/
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:760px) {
+    body {
+        font-size: 16px;
+        font-size: 100%;
+        line-height: 2;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 24px;
+        font-size: 67%;
+        line-height: 1.2;
+    }
+    /* "Works" articles style */
+    .TableDesign {
+        border: 1px solid #fdd6d1;
+        width: 100%;
+        font-size: 12px;
+    }
+    .TableDesign th {
+        display: block;
+        border-right: none;
+        border-bottom: 5px solid #b52654;
+        padding-bottom: .4em;
+        margin-bottom: .4em;
+    }
+    .TableDesign tr {
+        display: block;
+        /* margin-bottom: 2em; */
+    }
+    .TableDesign td {
+        border-bottom: 1px solid #fdd6d1;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+        position: relative;
+        padding: .625em .625em .625em 4em;
+        border-right: none;
+    }
+    .TableDesign td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        position: absolute;
+        left: 10px;
+    }
+    .TableDesign td:last-child {
+        border-bottom: 0;
+    }
+    /* Menu -----------------------------------------------------*/
     #Menubar-s {
         display: none;
         overflow: hidden;
@@ -180,10 +459,10 @@ a:hover {
         width: 100vw;
         height: 100vh;
         background: rgba(0, 0, 0, 0.9);
-        animation: menubar .5s both;
         -webkit-animation: menubar .5s both;
+        animation: menubar .5s both;
     }
-    @keyframes menubar {
+    @-webkit-keyframes menubar {
         0% {
             opacity: 0;
         }
@@ -191,7 +470,7 @@ a:hover {
             opacity: 1;
         }
     }
-    @-webkit-keyframes menubar {
+    @keyframes menubar {
         0% {
             opacity: 0;
         }
@@ -214,14 +493,14 @@ a:hover {
     #Menubar {
         display: none;
     }
-    /*タイトル*/
+    /*Title -----------------------------------------------------*/
     .TitleLogo-s {
         position: absolute;
         display: block;
-        width: 65vw;
+        width: 40vw;
         margin: 3%;
-        transition: .3s linear;
         -webkit-transition: .3s linear;
+        transition: .3s linear;
     }
     .TitleLogo {
         display: none;
@@ -232,220 +511,60 @@ a:hover {
     #Rocket {
         display: none;
     }
-    /*TODO:ハンバーガーメニュー*/
-    /*空タグを使わないデザイン何か
-    理想の動作→　https://www.ueshima-coffee-ten.jp/
-    */
+    /*Hamburger Menu -----------------------------------------------------*/
     .Hmenu {
         position: absolute;
-        display: block;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
         top: 1vh;
         right: 1.5vw;
+        margin: 1%;
     }
-    /* ※　型崩れ
-    .MenuAction-t {
-        transform: translateY(50px) rotate(-45deg);
+    #HamburgerOpen {
+        display: block;
     }
-    .MenuAction-c {
+    #HamburgerClose {
         display: none;
+        -webkit-animation: RotateX .3s linear;
+        animation: RotateX .3s linear;
     }
-    .MenuAction-b {
-        transform: translateY(-50px) rotate(45deg);
-    } */
-}
-
-
-/*-----------------------------------------------------------------*/
-
-#Contents {
-    z-index: 1;
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
-    padding-top: 100vh !important;
-}
-
-
-/* articles */
-
-.SectionBG {
-    z-index: 2;
-    background-color: rgba(0, 0, 0, .7);
-    padding: .5%;
-}
-
-.SectionBG section {
-    z-index: 3;
-    width: 80%;
-    margin: 1% auto 0;
-    padding: 30px;
-    background-image: url("../img/bg_article.jpg");
-    background-size: cover;
-    background-position: center;
-}
-
-.SectionBG section h2 {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-
-/* footer */
-
-#Footer {
-    padding: 3vh 3vw;
-    background-color: #301113;
-    color: white;
-    font-size: .8em;
-}
-
-.FontColor {
-    color: red;
-    font-weight: bold;
-}
-
-
-/* animations */
-
-.ScrollAnimation {
-    transform: translateY(-200%);
-    -webkit-transform: translateY(-200%);
-}
-
-#PageTop {
-    z-index: 9;
-    position: fixed;
-    width: 123.5px;
-    left: 85vw;
-    bottom: -50vh;
-    transition: .3s cubic-bezier(.4, 0, .2, 1);
-    -webkit-transition: .3s cubic-bezier(.4, 0, .2, 1);
-}
-
-#Rocket {
-    z-index: 10;
-    position: fixed;
-    width: 123.5px;
-    left: 85vw;
-    top: 100vh;
-}
-
-.PageTopAnimation {
-    -webkit-animation: fly .5s linear;
-    animation: fly .5s linear;
-}
-
-@-webkit-keyframes fly {
-    0% {
-        transform: translate(0, 0%);
-        -webkit-transform: translate(0, 0%);
+    @-webkit-keyframes RotateX {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
     }
-    100% {
-        transform: translate(0, -500%);
-        -webkit-transform: translate(0, -500%);
+    @keyframes RotateX {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
     }
-}
-
-@keyframes fly {
-    0% {
-        transform: translate(0, 0%);
-        -webkit-transform: translate(0, 0%);
+    /*Articles -----------------------------------------------------*/
+    .SectionBG section {
+        width: 95%;
+        margin: 1% auto 0;
+        padding: 20px;
     }
-    100% {
-        transform: translate(0, -500%);
-        -webkit-transform: translate(0, -500%);
-    }
-}
-
-.hideCat {
-    display: none;
-}
-
-
-/* Scroll down animation */
-
-
-/* https://www.nxworld.net/tips/css-scroll-down-button.html */
-
-#DownButton {
-    position: absolute;
-    top: 85vh;
-    left: 85vw;
-    z-index: 8;
-    text-decoration: none;
-    animation: sdb 3s infinite;
-    -webkit-animation: sdb 3s infinite;
-}
-
-@keyframes sdb {
-    0% {
-        transform: translateY(0%);
-        -webkit-transform: translateY(0%);
-        opacity: .5;
-    }
-    50% {
-        transform: translateY(20%);
-        -webkit-transform: translateY(20%);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0%);
-        -webkit-transform: translateY(0%);
-        opacity: .5;
-    }
-}
-
-@-webkit-keyframes sdb {
-    0% {
-        transform: translateY(0%);
-        -webkit-transform: translateY(0%);
-        opacity: .5;
-    }
-    50% {
-        transform: translateY(20%);
-        -webkit-transform: translateY(20%);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0%);
-        -webkit-transform: translateY(0%);
-        opacity: .5;
-    }
-}
-
-.SpiritMain {
-    stroke: #9400d3;
-    animation: sdb-color 6s infinite;
-    -webkit-animation: sdb-color 6s infinite;
-}
-
-.SpiritInner {
-    stroke: #9400d3;
-    fill: #fff;
-}
-
-@keyframes sdb-color {
-    0% {
-        fill: #9400d3;
-    }
-    50% {
-        fill: #c7a9d4;
-    }
-    100% {
-        fill: #9400d3;
-    }
-}
-
-@-webkit-keyframes sdb-color {
-    0% {
-        fill: #9400d3;
-    }
-    50% {
-        fill: #c7a9d4;
-    }
-    100% {
-        fill: #9400d3;
+    .SectionBG section h2 {
+        font-size: 1.3rem;
+        line-height: 2;
+        font-weight: bold;
+        color: #301113;
+        background-image: url('../img/bg_midashi.png');
+        padding: 0 5%;
     }
 }
 
@@ -453,5 +572,4 @@ a:hover {
 /* google フォント
 font-family: 'Noto Serif JP', serif;
 font-family: 'IM Fell DW Pica', serif;
-font-family: "Sawarabi Mincho";
 */
