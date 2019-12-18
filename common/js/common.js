@@ -26,7 +26,7 @@ const init = () => {
 
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                onScroll(lastPosition);//onScrollは引数を取らないはずでは？
+                onScroll(lastPosition);
                 ticking = false;
             });
             ticking = true;
